@@ -58,10 +58,6 @@ void swizzleMethod(Class class, SEL originalSelector, SEL swizzledSelector)
     }];
 }
 
-//- (void)az_countdown_server_dealloc {
-//    [[AZServerTimeManager sharedInstance] removeObserver:self forKeyPath:@"offset"];
-//}
-
 //监听offset的变化
 - (void)observeServerOffsetChange {
     static dispatch_once_t onceToken;
@@ -75,7 +71,6 @@ void swizzleMethod(Class class, SEL originalSelector, SEL swizzledSelector)
 - (void)az_countdown_server_observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     if ([keyPath isEqualToString:@"offset"] && [(__bridge NSString * _Nonnull)(context) isEqualToString:kKVOContent]) {
         NSTimeInterval offset = [change[NSKeyValueChangeNewKey] doubleValue];
-        NSLog(@"updateOffset:%f",offset);
         self.serverOffset = offset;
     }
     [self az_countdown_server_observeValueForKeyPath:keyPath ofObject:object change:change context:context];
