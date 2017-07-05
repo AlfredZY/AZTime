@@ -41,6 +41,7 @@ static AZCountdownManager *_instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _instance = [super allocWithZone:zone];
+        _instance.serverOffset = 0;
         dispatch_queue_t timerQueue = dispatch_queue_create("com.alfred.countdown-manager", DISPATCH_QUEUE_CONCURRENT);
         dispatch_async(timerQueue, ^{
             _instance.timer = [NSTimer timerWithTimeInterval:0.1 target:_instance selector:@selector(timerAction) userInfo:nil repeats:true];
@@ -249,19 +250,21 @@ static AZCountdownManager *_instance;
 - (void)handleLeftTimeFinished:(BOOL * _Nonnull)finish {
     static NSUInteger index = 0;
     *finish = NO;
+    __weak typeof(self)weakSelf = self;
     [self.countdownModelDictM enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, AZCountdownModel * _Nonnull obj, BOOL * _Nonnull stop) {
-        if ([self shouldUpdateLeftTimeWithModel:obj]) {
+        __strong typeof(self) strongSelf = weakSelf;
+        if ([strongSelf shouldUpdateLeftTimeWithModel:obj]) {
             if (obj.model != nil) {
                 NSTimeInterval leftTime = [obj.model.az_deadLineDate timeIntervalSinceDate:[NSDate date]];
-                obj.leftTime = leftTime;
+                obj.leftTime = leftTime + strongSelf.serverOffset;
             }else{
                 NSTimeInterval leftTime = [obj.deadLine timeIntervalSinceDate:[NSDate date]];
-                obj.leftTime = leftTime;
+                obj.leftTime = leftTime + strongSelf.serverOffset;
             }
         }
         
         index++;
-        if (index >= self.countdownModelDictM.count) {
+        if (index >= strongSelf.countdownModelDictM.count) {
             *finish = YES;
             index = 0;
         }

@@ -39,12 +39,31 @@ static NSString *const kID = @"TimerCellID";
 - (void)setModel:(TimeModel *)model {
     _model = model;
     __weak typeof(self) weakSelf = self;
-    
-    [[AZCountdownManager sharedInstance] addCountdownWithView:self deadlineDate:nil model:model interval:0.3 autoStop:YES leftTimeChangedBlock:^(NSTimeInterval leftTime, NSObject *model) {
-        __strong typeof(self) strongSelf = weakSelf;
-        strongSelf.textLabel.text = [NSString stringWithFormat:@"No:%ld",((TimeModel *)model).index];
-        strongSelf.detailTextLabel.text = [NSString stringWithFormat:@"Countdown:%.0f",leftTime];
-    }];
+    switch (model.type) {
+        case TimeModelTypeDuration:
+        {
+            self.textLabel.textColor = [UIColor magentaColor];
+            self.detailTextLabel.textColor = [UIColor magentaColor];
+            [[AZCountdownManager sharedInstance] addCountdownWithView:self deadlineDate:nil model:model interval:0.3 autoStop:YES leftTimeChangedBlock:^(NSTimeInterval leftTime, NSObject *model) {
+                __strong typeof(self) strongSelf = weakSelf;
+                strongSelf.textLabel.text = [NSString stringWithFormat:@"No:%ld",((TimeModel *)model).index];
+                strongSelf.detailTextLabel.text = [NSString stringWithFormat:@"Countdown:%.0f",leftTime];
+            }];
+        }
+            break;
+        case TimeModelTypeDeadlineDate:
+        {
+            self.textLabel.textColor = [UIColor orangeColor];
+            self.detailTextLabel.textColor = [UIColor orangeColor];
+            [[AZCountdownManager sharedInstance] addCountdownWithView:self deadlineDate:model.date model:model interval:0.3 autoStop:YES leftTimeChangedBlock:^(NSTimeInterval leftTime, NSObject *model) {
+                __strong typeof(self) strongSelf = weakSelf;
+                strongSelf.textLabel.text = [NSString stringWithFormat:@"No:%ld",((TimeModel *)model).index];
+                strongSelf.detailTextLabel.text = [NSString stringWithFormat:@"Countdown:%.0f",leftTime];
+            }];
+        }
+            break;
+    }
+
     
 }
 

@@ -8,9 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger,TimeModelType) {
+    TimeModelTypeDuration = 0,
+    TimeModelTypeDeadlineDate,
+};
+
 @interface TimeModel : NSObject
 
+@property (nonatomic, assign) TimeModelType type;
 @property (nonatomic, assign) NSTimeInterval duration;
+@property (nonatomic, strong) NSDate *date;
 @property (nonatomic, assign) NSInteger index;
 
 @end

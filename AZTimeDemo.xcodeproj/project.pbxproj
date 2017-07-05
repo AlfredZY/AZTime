@@ -23,6 +23,7 @@
 		BB87C06D1F0C80FC00A83273 /* AZServerTimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB87C0651F0C80FC00A83273 /* AZServerTimeManager.m */; };
 		BB87C06E1F0C80FC00A83273 /* NSDate+InternetDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = BB87C0681F0C80FC00A83273 /* NSDate+InternetDateTime.m */; };
 		BB87C06F1F0C80FC00A83273 /* NSObject+AZCountdownExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BB87C06A1F0C80FC00A83273 /* NSObject+AZCountdownExtension.m */; };
+		BB87C0721F0C98C500A83273 /* AZCountdownManager+Server.m in Sources */ = {isa = PBXBuildFile; fileRef = BB87C0711F0C98C500A83273 /* AZCountdownManager+Server.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,8 @@
 		BB87C0681F0C80FC00A83273 /* NSDate+InternetDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+InternetDateTime.m"; sourceTree = "<group>"; };
 		BB87C0691F0C80FC00A83273 /* NSObject+AZCountdownExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AZCountdownExtension.h"; sourceTree = "<group>"; };
 		BB87C06A1F0C80FC00A83273 /* NSObject+AZCountdownExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AZCountdownExtension.m"; sourceTree = "<group>"; };
+		BB87C0701F0C98C500A83273 /* AZCountdownManager+Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AZCountdownManager+Server.h"; sourceTree = "<group>"; };
+		BB87C0711F0C98C500A83273 /* AZCountdownManager+Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AZCountdownManager+Server.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,13 +141,15 @@
 		BB87C05F1F0C80FC00A83273 /* AZTime */ = {
 			isa = PBXGroup;
 			children = (
+				BB87C0661F0C80FC00A83273 /* AZTime.h */,
 				BB87C0601F0C80FC00A83273 /* AZCountdownManager.h */,
 				BB87C0611F0C80FC00A83273 /* AZCountdownManager.m */,
+				BB87C0701F0C98C500A83273 /* AZCountdownManager+Server.h */,
+				BB87C0711F0C98C500A83273 /* AZCountdownManager+Server.m */,
 				BB87C0621F0C80FC00A83273 /* AZCountdownModel.h */,
 				BB87C0631F0C80FC00A83273 /* AZCountdownModel.m */,
 				BB87C0641F0C80FC00A83273 /* AZServerTimeManager.h */,
 				BB87C0651F0C80FC00A83273 /* AZServerTimeManager.m */,
-				BB87C0661F0C80FC00A83273 /* AZTime.h */,
 				BB87C0671F0C80FC00A83273 /* NSDate+InternetDateTime.h */,
 				BB87C0681F0C80FC00A83273 /* NSDate+InternetDateTime.m */,
 				BB87C0691F0C80FC00A83273 /* NSObject+AZCountdownExtension.h */,
@@ -226,6 +231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB87C0721F0C98C500A83273 /* AZCountdownManager+Server.m in Sources */,
 				BB87C06D1F0C80FC00A83273 /* AZServerTimeManager.m in Sources */,
 				BB145E371F0B80F3005A04A6 /* TimeModel.m in Sources */,
 				BB87C06F1F0C80FC00A83273 /* NSObject+AZCountdownExtension.m in Sources */,

@@ -11,6 +11,7 @@
 
 #import "AZCountdownManager.h"
 #import "AZServerTimeManager.h"
+#import "AZCountdownManager+Server.h"
 
 
 #endif /* AZTime_h */

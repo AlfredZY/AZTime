@@ -14,6 +14,11 @@
 
 @property (strong, nonatomic,readonly) NSMutableDictionary<NSString *, AZCountdownModel *> *countdownModelDictM;
 
+/**
+ 本地时间和服务器时间的偏差量 default 0
+ */
+@property (nonatomic, assign) NSTimeInterval serverOffset;
+
 + (instancetype)sharedInstance;
 
 
