@@ -1,0 +1,404 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BB145E091F0B77DC005A04A6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BB145E081F0B77DC005A04A6 /* main.m */; };
+		BB145E0C1F0B77DC005A04A6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BB145E0B1F0B77DC005A04A6 /* AppDelegate.m */; };
+		BB145E0F1F0B77DC005A04A6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB145E0E1F0B77DC005A04A6 /* ViewController.m */; };
+		BB145E121F0B77DC005A04A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB145E101F0B77DC005A04A6 /* Main.storyboard */; };
+		BB145E141F0B77DC005A04A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB145E131F0B77DC005A04A6 /* Assets.xcassets */; };
+		BB145E171F0B77DC005A04A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB145E151F0B77DC005A04A6 /* LaunchScreen.storyboard */; };
+		BB145E371F0B80F3005A04A6 /* TimeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB145E2C1F0B80F3005A04A6 /* TimeModel.m */; };
+		BB145E381F0B80F3005A04A6 /* TimerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB145E2E1F0B80F3005A04A6 /* TimerCell.m */; };
+		BB145E391F0B80F3005A04A6 /* TimerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB145E301F0B80F3005A04A6 /* TimerTableViewController.m */; };
+		BB145E401F0B8D4C005A04A6 /* ServerTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB145E3E1F0B8D4C005A04A6 /* ServerTimeViewController.m */; };
+		BB145E411F0B8D4C005A04A6 /* ServerTimeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB145E3F1F0B8D4C005A04A6 /* ServerTimeViewController.xib */; };
+		BB87C06B1F0C80FC00A83273 /* AZCountdownManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB87C0611F0C80FC00A83273 /* AZCountdownManager.m */; };
+		BB87C06C1F0C80FC00A83273 /* AZCountdownModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB87C0631F0C80FC00A83273 /* AZCountdownModel.m */; };
+		BB87C06D1F0C80FC00A83273 /* AZServerTimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB87C0651F0C80FC00A83273 /* AZServerTimeManager.m */; };
+		BB87C06E1F0C80FC00A83273 /* NSDate+InternetDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = BB87C0681F0C80FC00A83273 /* NSDate+InternetDateTime.m */; };
+		BB87C06F1F0C80FC00A83273 /* NSObject+AZCountdownExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BB87C06A1F0C80FC00A83273 /* NSObject+AZCountdownExtension.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BB145E041F0B77DC005A04A6 /* AZTimeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AZTimeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB145E081F0B77DC005A04A6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BB145E0A1F0B77DC005A04A6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		BB145E0B1F0B77DC005A04A6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BB145E0D1F0B77DC005A04A6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		BB145E0E1F0B77DC005A04A6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		BB145E111F0B77DC005A04A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BB145E131F0B77DC005A04A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BB145E161F0B77DC005A04A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BB145E181F0B77DC005A04A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB145E2B1F0B80F3005A04A6 /* TimeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeModel.h; sourceTree = "<group>"; };
+		BB145E2C1F0B80F3005A04A6 /* TimeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeModel.m; sourceTree = "<group>"; };
+		BB145E2D1F0B80F3005A04A6 /* TimerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerCell.h; sourceTree = "<group>"; };
+		BB145E2E1F0B80F3005A04A6 /* TimerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerCell.m; sourceTree = "<group>"; };
+		BB145E2F1F0B80F3005A04A6 /* TimerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerTableViewController.h; sourceTree = "<group>"; };
+		BB145E301F0B80F3005A04A6 /* TimerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerTableViewController.m; sourceTree = "<group>"; };
+		BB145E3D1F0B8D4C005A04A6 /* ServerTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerTimeViewController.h; sourceTree = "<group>"; };
+		BB145E3E1F0B8D4C005A04A6 /* ServerTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerTimeViewController.m; sourceTree = "<group>"; };
+		BB145E3F1F0B8D4C005A04A6 /* ServerTimeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServerTimeViewController.xib; sourceTree = "<group>"; };
+		BB87C0601F0C80FC00A83273 /* AZCountdownManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZCountdownManager.h; sourceTree = "<group>"; };
+		BB87C0611F0C80FC00A83273 /* AZCountdownManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZCountdownManager.m; sourceTree = "<group>"; };
+		BB87C0621F0C80FC00A83273 /* AZCountdownModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZCountdownModel.h; sourceTree = "<group>"; };
+		BB87C0631F0C80FC00A83273 /* AZCountdownModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZCountdownModel.m; sourceTree = "<group>"; };
+		BB87C0641F0C80FC00A83273 /* AZServerTimeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZServerTimeManager.h; sourceTree = "<group>"; };
+		BB87C0651F0C80FC00A83273 /* AZServerTimeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZServerTimeManager.m; sourceTree = "<group>"; };
+		BB87C0661F0C80FC00A83273 /* AZTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZTime.h; sourceTree = "<group>"; };
+		BB87C0671F0C80FC00A83273 /* NSDate+InternetDateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+InternetDateTime.h"; sourceTree = "<group>"; };
+		BB87C0681F0C80FC00A83273 /* NSDate+InternetDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+InternetDateTime.m"; sourceTree = "<group>"; };
+		BB87C0691F0C80FC00A83273 /* NSObject+AZCountdownExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AZCountdownExtension.h"; sourceTree = "<group>"; };
+		BB87C06A1F0C80FC00A83273 /* NSObject+AZCountdownExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AZCountdownExtension.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BB145E011F0B77DC005A04A6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BB145DFB1F0B77DC005A04A6 = {
+			isa = PBXGroup;
+			children = (
+				BB145E061F0B77DC005A04A6 /* AZTimeDemo */,
+				BB145E051F0B77DC005A04A6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BB145E051F0B77DC005A04A6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BB145E041F0B77DC005A04A6 /* AZTimeDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BB145E061F0B77DC005A04A6 /* AZTimeDemo */ = {
+			isa = PBXGroup;
+			children = (
+				BB87C05F1F0C80FC00A83273 /* AZTime */,
+				BB145E2A1F0B80F3005A04A6 /* CountdownDemo */,
+				BB145E311F0B80F3005A04A6 /* ServerTimeDemo */,
+				BB145E0A1F0B77DC005A04A6 /* AppDelegate.h */,
+				BB145E0B1F0B77DC005A04A6 /* AppDelegate.m */,
+				BB145E0D1F0B77DC005A04A6 /* ViewController.h */,
+				BB145E0E1F0B77DC005A04A6 /* ViewController.m */,
+				BB145E101F0B77DC005A04A6 /* Main.storyboard */,
+				BB145E131F0B77DC005A04A6 /* Assets.xcassets */,
+				BB145E151F0B77DC005A04A6 /* LaunchScreen.storyboard */,
+				BB145E181F0B77DC005A04A6 /* Info.plist */,
+				BB145E071F0B77DC005A04A6 /* Supporting Files */,
+			);
+			path = AZTimeDemo;
+			sourceTree = "<group>";
+		};
+		BB145E071F0B77DC005A04A6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BB145E081F0B77DC005A04A6 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BB145E2A1F0B80F3005A04A6 /* CountdownDemo */ = {
+			isa = PBXGroup;
+			children = (
+				BB145E2B1F0B80F3005A04A6 /* TimeModel.h */,
+				BB145E2C1F0B80F3005A04A6 /* TimeModel.m */,
+				BB145E2D1F0B80F3005A04A6 /* TimerCell.h */,
+				BB145E2E1F0B80F3005A04A6 /* TimerCell.m */,
+				BB145E2F1F0B80F3005A04A6 /* TimerTableViewController.h */,
+				BB145E301F0B80F3005A04A6 /* TimerTableViewController.m */,
+			);
+			path = CountdownDemo;
+			sourceTree = "<group>";
+		};
+		BB145E311F0B80F3005A04A6 /* ServerTimeDemo */ = {
+			isa = PBXGroup;
+			children = (
+				BB145E3D1F0B8D4C005A04A6 /* ServerTimeViewController.h */,
+				BB145E3E1F0B8D4C005A04A6 /* ServerTimeViewController.m */,
+				BB145E3F1F0B8D4C005A04A6 /* ServerTimeViewController.xib */,
+			);
+			path = ServerTimeDemo;
+			sourceTree = "<group>";
+		};
+		BB87C05F1F0C80FC00A83273 /* AZTime */ = {
+			isa = PBXGroup;
+			children = (
+				BB87C0601F0C80FC00A83273 /* AZCountdownManager.h */,
+				BB87C0611F0C80FC00A83273 /* AZCountdownManager.m */,
+				BB87C0621F0C80FC00A83273 /* AZCountdownModel.h */,
+				BB87C0631F0C80FC00A83273 /* AZCountdownModel.m */,
+				BB87C0641F0C80FC00A83273 /* AZServerTimeManager.h */,
+				BB87C0651F0C80FC00A83273 /* AZServerTimeManager.m */,
+				BB87C0661F0C80FC00A83273 /* AZTime.h */,
+				BB87C0671F0C80FC00A83273 /* NSDate+InternetDateTime.h */,
+				BB87C0681F0C80FC00A83273 /* NSDate+InternetDateTime.m */,
+				BB87C0691F0C80FC00A83273 /* NSObject+AZCountdownExtension.h */,
+				BB87C06A1F0C80FC00A83273 /* NSObject+AZCountdownExtension.m */,
+			);
+			path = AZTime;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BB145E031F0B77DC005A04A6 /* AZTimeDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB145E1B1F0B77DC005A04A6 /* Build configuration list for PBXNativeTarget "AZTimeDemo" */;
+			buildPhases = (
+				BB145E001F0B77DC005A04A6 /* Sources */,
+				BB145E011F0B77DC005A04A6 /* Frameworks */,
+				BB145E021F0B77DC005A04A6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AZTimeDemo;
+			productName = AZTimeDemo;
+			productReference = BB145E041F0B77DC005A04A6 /* AZTimeDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BB145DFC1F0B77DC005A04A6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Alfred Zhang";
+				TargetAttributes = {
+					BB145E031F0B77DC005A04A6 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 2273TCK6P6;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = BB145DFF1F0B77DC005A04A6 /* Build configuration list for PBXProject "AZTimeDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BB145DFB1F0B77DC005A04A6;
+			productRefGroup = BB145E051F0B77DC005A04A6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BB145E031F0B77DC005A04A6 /* AZTimeDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BB145E021F0B77DC005A04A6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB145E171F0B77DC005A04A6 /* LaunchScreen.storyboard in Resources */,
+				BB145E141F0B77DC005A04A6 /* Assets.xcassets in Resources */,
+				BB145E411F0B8D4C005A04A6 /* ServerTimeViewController.xib in Resources */,
+				BB145E121F0B77DC005A04A6 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BB145E001F0B77DC005A04A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB87C06D1F0C80FC00A83273 /* AZServerTimeManager.m in Sources */,
+				BB145E371F0B80F3005A04A6 /* TimeModel.m in Sources */,
+				BB87C06F1F0C80FC00A83273 /* NSObject+AZCountdownExtension.m in Sources */,
+				BB145E401F0B8D4C005A04A6 /* ServerTimeViewController.m in Sources */,
+				BB145E0F1F0B77DC005A04A6 /* ViewController.m in Sources */,
+				BB145E0C1F0B77DC005A04A6 /* AppDelegate.m in Sources */,
+				BB145E391F0B80F3005A04A6 /* TimerTableViewController.m in Sources */,
+				BB145E381F0B80F3005A04A6 /* TimerCell.m in Sources */,
+				BB87C06E1F0C80FC00A83273 /* NSDate+InternetDateTime.m in Sources */,
+				BB87C06C1F0C80FC00A83273 /* AZCountdownModel.m in Sources */,
+				BB87C06B1F0C80FC00A83273 /* AZCountdownManager.m in Sources */,
+				BB145E091F0B77DC005A04A6 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BB145E101F0B77DC005A04A6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BB145E111F0B77DC005A04A6 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BB145E151F0B77DC005A04A6 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BB145E161F0B77DC005A04A6 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BB145E191F0B77DC005A04A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		BB145E1A1F0B77DC005A04A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BB145E1C1F0B77DC005A04A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2273TCK6P6;
+				INFOPLIST_FILE = AZTimeDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.alfred.AZTimeDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BB145E1D1F0B77DC005A04A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2273TCK6P6;
+				INFOPLIST_FILE = AZTimeDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.alfred.AZTimeDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BB145DFF1F0B77DC005A04A6 /* Build configuration list for PBXProject "AZTimeDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB145E191F0B77DC005A04A6 /* Debug */,
+				BB145E1A1F0B77DC005A04A6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB145E1B1F0B77DC005A04A6 /* Build configuration list for PBXNativeTarget "AZTimeDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB145E1C1F0B77DC005A04A6 /* Debug */,
+				BB145E1D1F0B77DC005A04A6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BB145DFC1F0B77DC005A04A6 /* Project object */;
+}
