@@ -12,6 +12,13 @@
 
 @interface AZCountdownManager : NSObject
 
+
+/**
+ 已经添加的倒计时key
+ */
+@property (strong, nonatomic, readonly) NSArray<NSString *> *keys;
+
+
 /**
  本地时间和服务器时间的偏差量 default 0
  */

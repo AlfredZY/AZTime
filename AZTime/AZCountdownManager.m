@@ -47,9 +47,7 @@ static AZCountdownManager *_instance;
         _instance.serverOffset = 0;
         dispatch_queue_t timerQueue = dispatch_queue_create("com.alfred.countdown-manager", DISPATCH_QUEUE_CONCURRENT);
         dispatch_async(timerQueue, ^{
-            _instance.timer = [NSTimer timerWithTimeInterval:0.1 target:_instance selector:@selector(timerAction) userInfo:nil repeats:true];
             [[NSThread currentThread] setName:@"AZCountdownManager"];
-            [[NSRunLoop currentRunLoop] addTimer:_instance.timer forMode:NSDefaultRunLoopMode];
             [[NSRunLoop currentRunLoop] addPort:[NSPort port] forMode:NSDefaultRunLoopMode];
             _instance.runloop = [NSRunLoop currentRunLoop];
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
@@ -251,7 +249,6 @@ static AZCountdownManager *_instance;
 - (void)timerAction
 {
     static BOOL finish = YES;
-
     if (finish) {
         [self handleLeftTimeWithFinishedFlag:&finish];
     }
@@ -286,11 +283,16 @@ static AZCountdownManager *_instance;
     }];
 }
 
+
+#pragma mark- Getter
+
 - (NSDate *)serverDate {
     return [NSDate dateWithTimeIntervalSinceNow:-_serverOffset];
 }
 
-#pragma mark- Getter
+- (NSArray<NSString *> *)keys {
+    return self.countdownModelDictM.allKeys;
+}
 
 - (NSTimer *)timer {
     if (_timer == nil) {

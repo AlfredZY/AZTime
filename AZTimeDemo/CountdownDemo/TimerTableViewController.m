@@ -46,7 +46,6 @@
             model.duration = 600;
             NSDate *deadlineDate = [[AZCountdownManager sharedInstance] serverDeadlieDateWithDuration:model.duration];
             model.az_deadLineDate = deadlineDate;
-            NSLog(@">>>%@",deadlineDate);
         }else {
             //如果服务器返回的就是date
             //在添加倒计时时 deadlineDate传date

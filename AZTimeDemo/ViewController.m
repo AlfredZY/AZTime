@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "AZTime.h"
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -24,6 +25,11 @@
     self.tableView.frame = self.view.bounds;
     self.titles = @[@"CountDownDemo",@"ServerTimeDemo"];
     self.classStrings = @[@"TimerTableViewController",@"ServerTimeViewController"];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@"%lu",(unsigned long)[AZCountdownManager sharedInstance].keys.count);
 }
 
 
