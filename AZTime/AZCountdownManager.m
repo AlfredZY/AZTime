@@ -21,6 +21,7 @@ static const NSTimeInterval kDefaultInterval = 0.5;
 @property (nonatomic, strong) NSTimer *timer;
 @property (strong, nonatomic, readwrite) NSMutableDictionary<NSString *, AZCountdownModel *> *countdownModelDictM;
 @property (weak, nonatomic) NSRunLoop *runloop;
+@property (nonatomic, strong, readwrite) NSDate *serverDate;
 
 
 @end
@@ -69,8 +70,8 @@ static AZCountdownManager *_instance;
 
 #pragma mark- Public
 
-+ (NSDate *)deadlieDateWithDuration:(NSTimeInterval)duration {
-    return [NSDate dateWithTimeInterval:duration sinceDate:[NSDate date]];
+- (NSDate *)serverDeadlieDateWithDuration:(NSTimeInterval)duration {
+    return [NSDate dateWithTimeInterval:duration - self.serverOffset sinceDate:[NSDate date]];
 }
 
 - (void)addCountdownWithView:(UIView *)view
@@ -102,7 +103,7 @@ static AZCountdownManager *_instance;
         }
         countdown.model = model;
     }else{
-        countdown.deadLine = deadline;
+        countdown.deadline = deadline;
     }
 
     countdown.interval = interval > 0 ? interval : kDefaultInterval;
@@ -114,7 +115,7 @@ static AZCountdownManager *_instance;
         [countdown addObserver:self forKeyPath:@"leftTime" options:NSKeyValueObservingOptionNew context:(__bridge void * _Nonnull)(key)];
         countdown.addObserver = YES;
     }
-    countdown.leftTime = [countdown.model.az_deadLineDate timeIntervalSinceDate:[NSDate date]];
+    countdown.leftTime = [countdown.model.az_deadLineDate timeIntervalSinceDate:self.serverDate];
     
     [self runTimer];
 }
@@ -177,7 +178,7 @@ static AZCountdownManager *_instance;
         model.preUpdateDate = [NSDate date];
         return YES;
     }else{
-        if ([[NSDate date] timeIntervalSinceDate:model.preUpdateDate] < model.interval) {
+        if ([[NSDate date] timeIntervalSinceDate:model.preUpdateDate] < model.interval && [[NSDate date] timeIntervalSinceDate:model.preUpdateDate] > 0) { //>0判断为了防止用户调整时间导致出现判断出错的情况
             return NO;
         }else{
             model.preUpdateDate = [NSDate date];
@@ -220,7 +221,12 @@ static AZCountdownManager *_instance;
                 if (countdownModel.autoStop) {
                     if (leftTime <= 0) {
                         countdownModel.leftTimeChangedBlock(0, countdownModel.model);
-                        [self ignoreCountdownWithKey:key];
+                        if (!countdownModel.isDelayCheck) {
+                            countdownModel.delayCheck = YES;
+                            [self performSelector:@selector(checkShouldIgnoreCountdownWithKey:) withObject:key afterDelay:60];
+
+                        }
+//                        [self ignoreCountdownWithKey:key];
                     }else{
                         countdownModel.leftTimeChangedBlock(leftTime, countdownModel.model);
                     }
@@ -232,11 +238,20 @@ static AZCountdownManager *_instance;
     }
 }
 
+- (void)checkShouldIgnoreCountdownWithKey:(NSString *)key {
+    AZCountdownModel *countdownModel = self.countdownModelDictM[key];
+    if (countdownModel.leftTime <= 0) {
+        [self ignoreCountdownWithKey:key];
+    }
+    countdownModel.delayCheck = NO;
+}
+
 #pragma mark- Action
 
 - (void)timerAction
 {
     static BOOL finish = YES;
+
     if (finish) {
         [self handleLeftTimeWithFinishedFlag:&finish];
     }
@@ -245,16 +260,21 @@ static AZCountdownManager *_instance;
 - (void)handleLeftTimeWithFinishedFlag:(BOOL * _Nonnull)finish {
     static NSUInteger index = 0;
     *finish = NO;
+    if (self.countdownModelDictM.count <= 0) {
+        *finish = YES;
+        index = 0;
+        return;
+    }
     __weak typeof(self)weakSelf = self;
     [self.countdownModelDictM enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, AZCountdownModel * _Nonnull obj, BOOL * _Nonnull stop) {
         __strong typeof(self) strongSelf = weakSelf;
         if ([strongSelf shouldUpdateLeftTimeWithModel:obj]) {
             if (obj.model != nil) {
-                NSTimeInterval leftTime = [obj.model.az_deadLineDate timeIntervalSinceDate:[NSDate date]];
-                obj.leftTime = leftTime + strongSelf.serverOffset;
+                NSTimeInterval leftTime = [obj.model.az_deadLineDate timeIntervalSinceDate:self.serverDate];
+                obj.leftTime = leftTime;
             }else{
-                NSTimeInterval leftTime = [obj.deadLine timeIntervalSinceDate:[NSDate date]];
-                obj.leftTime = leftTime + strongSelf.serverOffset;
+                NSTimeInterval leftTime = [obj.deadline timeIntervalSinceDate:self.serverDate];
+                obj.leftTime = leftTime;
             }
         }
         
@@ -266,6 +286,9 @@ static AZCountdownManager *_instance;
     }];
 }
 
+- (NSDate *)serverDate {
+    return [NSDate dateWithTimeIntervalSinceNow:-_serverOffset];
+}
 
 #pragma mark- Getter
 

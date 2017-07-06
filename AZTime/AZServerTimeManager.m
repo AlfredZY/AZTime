@@ -75,7 +75,7 @@ static AZServerTimeManager *_instance;
         NSDate *responseDate = [NSDate dateFromRFC822String:httpResponse.allHeaderFields[@"Date"]];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (responseDate != nil ) {
-                strongSelf.offset = [self timeIntervalSince1970:responseDate] - [self timeIntervalSince1970:requestDate] - ([self timeIntervalSince1970:now] - [self timeIntervalSince1970:requestDate]) / 2.f;
+                strongSelf.offset = -([self timeIntervalSince1970:responseDate] - [self timeIntervalSince1970:requestDate] - ([self timeIntervalSince1970:now] - [self timeIntervalSince1970:requestDate]) / 2.f);
                 if (completion) {
                     completion(YES,strongSelf.offset);
                 }

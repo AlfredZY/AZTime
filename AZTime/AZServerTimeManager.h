@@ -13,7 +13,7 @@ typedef void(^AZServerTimeManagerBlock)(BOOL success,NSTimeInterval offset);
 @interface AZServerTimeManager : NSObject
 
 /**
- 本地时间和服务器时间的偏差量
+ 本地时间和服务器时间的偏差量(>0表示比服务器时间快)
  */
 @property (assign, nonatomic, readonly) NSTimeInterval offset;
 

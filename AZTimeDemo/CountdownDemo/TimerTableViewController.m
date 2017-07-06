@@ -21,8 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //自动更新服务器时间偏移量
-    [[AZCountdownManager sharedInstance] autoUpdateServerOffsetWithVerifyUrl:@"https://www.baidu.com"];
+
     [self reload];
 }
 
@@ -34,7 +33,7 @@
 
 - (NSArray *)fetchData {
     NSMutableArray *arrM = [NSMutableArray array];
-    for (NSInteger i = 0; i < 3000; i++) {
+    for (NSInteger i = 0; i < 2; i++) {
         TimeModel *model = [[TimeModel alloc] init];
         model.index = i;
 
@@ -43,13 +42,17 @@
             //否则会导致未加载到tableView上的cell时间错误
             //在添加倒计时时 deadlineDate传nil
             model.type = TimeModelTypeDuration;
-            model.duration = random() % 300;
-            [model setDeadlineDateWithDuration:model.duration];
+//            model.duration = random() % 300;
+            model.duration = 600;
+            NSDate *deadlineDate = [[AZCountdownManager sharedInstance] serverDeadlieDateWithDuration:model.duration];
+            model.az_deadLineDate = deadlineDate;
+            NSLog(@">>>%@",deadlineDate);
         }else {
             //如果服务器返回的就是date
             //在添加倒计时时 deadlineDate传date
             model.type = TimeModelTypeDeadlineDate;
-            model.date = [NSDate dateWithTimeIntervalSinceNow:random() % 300];
+//            model.date = [NSDate dateWithTimeIntervalSinceNow:random() % 300];
+            model.date = [NSDate dateWithTimeIntervalSinceNow:1200];
         }
         
         [arrM addObject:model];

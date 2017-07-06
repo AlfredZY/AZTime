@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "AZTime.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    //自动更新服务器时间偏移量
+    [[AZCountdownManager sharedInstance] autoUpdateServerOffsetWithVerifyUrl:@"https://www.baidu.com"];
     return YES;
 }
 

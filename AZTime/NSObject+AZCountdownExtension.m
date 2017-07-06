@@ -19,11 +19,4 @@
     objc_setAssociatedObject(self, @selector(az_deadLineDate), az_deadLineDate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-
-- (void)setDeadlineDateWithDuration:(NSTimeInterval)duration {
-    self.az_deadLineDate = [NSDate dateWithTimeInterval:duration sinceDate:[NSDate date]];;
-}
-
-
-
 @end

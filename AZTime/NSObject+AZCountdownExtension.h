@@ -12,7 +12,4 @@
 
 @property (nonatomic, strong) NSDate *az_deadLineDate;
 
-- (void)setDeadlineDateWithDuration:(NSTimeInterval)duration;
-
-
 @end

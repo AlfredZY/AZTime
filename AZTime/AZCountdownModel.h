@@ -15,8 +15,9 @@
 @property (assign, nonatomic) NSTimeInterval interval; //倒计时间隔
 @property (assign, nonatomic) BOOL autoStop; //倒计时到0时是否自动停止
 @property (assign, nonatomic) NSTimeInterval leftTime;
-@property (strong, nonatomic) NSDate *deadLine;
+@property (strong, nonatomic) NSDate *deadline;
 @property (assign, nonatomic,getter = isAddObserver) BOOL addObserver;
+@property (assign, nonatomic,getter = isDelayCheck) BOOL delayCheck;
 @property (strong, nonatomic) NSDate *preUpdateDate;
 
 @property (copy, nonatomic) void (^leftTimeChangedBlock)(NSTimeInterval,NSObject *);

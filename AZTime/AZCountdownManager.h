@@ -17,9 +17,23 @@
  */
 @property (nonatomic, assign) NSTimeInterval serverOffset;
 
+
+/**
+ 基于serverOffset计算得到的服务器时间
+ */
+@property (nonatomic, strong, readonly) NSDate *serverDate;
+
+
 + (instancetype)sharedInstance;
 
-+ (NSDate *)deadlieDateWithDuration:(NSTimeInterval)duration;
+
+/**
+获取相对服务器的deadline
+
+ @param duration 倒计时持续时间
+ @return 相对服务器的deadlin
+ */
+- (NSDate *)serverDeadlieDateWithDuration:(NSTimeInterval)duration;
 
 /**
  新增倒计时
