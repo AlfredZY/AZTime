@@ -1,9 +1,9 @@
 //
 //  AZTime.h
-//  RACDemo
+//  AZTime
 //
 //  Created by Alfred Zhang on 2017/7/4.
-//  Copyright © 2017年 com.alfred.demo. All rights reserved.
+//  Copyright © 2017年 com.alfred.AZTime. All rights reserved.
 //
 
 #ifndef AZTime_h

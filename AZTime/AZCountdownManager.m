@@ -1,9 +1,9 @@
 //
 //  AZCountdownManager.m
-//  AZCountdownManager
+//  AZTime
 //
 //  Created by Alfred Zhang on 2017/4/10.
-//  Copyright © 2017年 Alfred. All rights reserved.
+//  Copyright © 2017年 com.alfred.AZTime. All rights reserved.
 //
 
 #import "AZCountdownManager.h"
