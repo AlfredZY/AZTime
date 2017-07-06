@@ -10,6 +10,12 @@
 
 @interface AZCountdownManager (Server)
 
+
+/**
+ 自动更新本地和服务器时间的偏移量和AZCountdownManager的serverOffset
+ 
+ @param verifyUrl 校对的URL
+ */
 - (void)autoUpdateServerOffsetWithVerifyUrl:(NSString *)verifyUrl;
 
 @end

@@ -14,6 +14,8 @@
 
 static const NSTimeInterval kDefaultInterval = 0.5;
 
+#define AZViewKey(view) [NSString stringWithFormat:@"key:%p",view]
+
 @interface AZCountdownManager ()
 
 @property (nonatomic, strong) NSTimer *timer;
@@ -77,8 +79,7 @@ static AZCountdownManager *_instance;
                     interval:(NSTimeInterval)interval
                     autoStop:(BOOL)autoStop
         leftTimeChangedBlock:(void (^)(NSTimeInterval leftTime, NSObject *model))leftTimeChangedBlock {
-    NSString *key = [NSString stringWithFormat:@"key:%p",view];
-    [self addCountdownWithKey:key deadlineDate:deadline model:model interval:interval autoStop:autoStop leftTimeChangedBlock:leftTimeChangedBlock];
+    [self addCountdownWithKey:AZViewKey(view) deadlineDate:deadline model:model interval:interval autoStop:autoStop leftTimeChangedBlock:leftTimeChangedBlock];
 }
 
 - (void)addCountdownWithKey:(NSString *)key
@@ -118,45 +119,39 @@ static AZCountdownManager *_instance;
     [self runTimer];
 }
 
-- (void)addCountdownWithKey:(NSString *)key
-                   duration:(NSTimeInterval)duration
+- (void)updateCountdownWithKey:(NSString *)key
+               deadlineDate:(NSDate *)deadline
                       model:(NSObject *)model
                    interval:(NSTimeInterval)interval
+                   autoStop:(BOOL)autoStop
        leftTimeChangedBlock:(void (^)(NSTimeInterval leftTime, NSObject *model))leftTimeChangedBlock {
-    
-    [self addCountdownWithKey:key duration:duration model:model interval:interval autoStop:YES leftTimeChangedBlock:leftTimeChangedBlock];
+    [self stopCountdownWithKey:key];
+    [self addCountdownWithKey:key deadlineDate:deadline model:model interval:interval autoStop:autoStop leftTimeChangedBlock:leftTimeChangedBlock];
 }
 
-- (void)addCountdownWithView:(UIView *)view
-                    duration:(NSTimeInterval)duration
+- (void)updateCountdownWithView:(UIView *)view
+                deadlineDate:(NSDate *)deadline
                        model:(NSObject *)model
                     interval:(NSTimeInterval)interval
                     autoStop:(BOOL)autoStop
         leftTimeChangedBlock:(void (^)(NSTimeInterval leftTime, NSObject *model))leftTimeChangedBlock {
-    if (view == nil) {
-        return;
-    }
-    NSString *key = [NSString stringWithFormat:@"key:%p",view];
-    [self addCountdownWithKey:key duration:duration model:model interval:interval autoStop:autoStop leftTimeChangedBlock:leftTimeChangedBlock];
+    [self updateCountdownWithKey:AZViewKey(view) deadlineDate:deadline model:model interval:interval autoStop:autoStop leftTimeChangedBlock:leftTimeChangedBlock];
 }
 
-- (void)addCountdownWithKey:(NSString *)key
-                   duration:(NSTimeInterval)duration
-                      model:(NSObject *)model
-                   interval:(NSTimeInterval)interval
-                   autoStop:(BOOL)autoStop
-       leftTimeChangedBlock:(void (^)(NSTimeInterval, NSObject *))leftTimeChangedBlock {
-    NSDate *deadline = [AZCountdownManager deadlieDateWithDuration:duration];
-    [self addCountdownWithKey:key deadlineDate:deadline model:model interval:interval autoStop:autoStop leftTimeChangedBlock:leftTimeChangedBlock];
-}
-
-
-- (void)pauseCountdownWithTimerKey:(NSString *)key {
+- (void)ignoreCountdownWithKey:(NSString *)key {
     [self removeObserverWithKey:key clearDeadLineDate:NO];
+}
+
+- (void)ignoreCountdownWithView:(UIView *)view {
+    [self removeObserverWithKey:AZViewKey(view) clearDeadLineDate:NO];
 }
 
 - (void)stopCountdownWithKey:(NSString *)key {
     [self removeObserverWithKey:key clearDeadLineDate:YES];
+}
+
+- (void)stopCountdownWithView:(UIView *)view {
+    [self removeObserverWithKey:AZViewKey(view) clearDeadLineDate:YES];
 }
 
 #pragma mark- Private
@@ -225,7 +220,7 @@ static AZCountdownManager *_instance;
                 if (countdownModel.autoStop) {
                     if (leftTime <= 0) {
                         countdownModel.leftTimeChangedBlock(0, countdownModel.model);
-                        [self pauseCountdownWithTimerKey:key];
+                        [self ignoreCountdownWithKey:key];
                     }else{
                         countdownModel.leftTimeChangedBlock(leftTime, countdownModel.model);
                     }
@@ -243,11 +238,11 @@ static AZCountdownManager *_instance;
 {
     static BOOL finish = YES;
     if (finish) {
-        [self handleLeftTimeFinished:&finish];
+        [self handleLeftTimeWithFinishedFlag:&finish];
     }
 }
 
-- (void)handleLeftTimeFinished:(BOOL * _Nonnull)finish {
+- (void)handleLeftTimeWithFinishedFlag:(BOOL * _Nonnull)finish {
     static NSUInteger index = 0;
     *finish = NO;
     __weak typeof(self)weakSelf = self;
