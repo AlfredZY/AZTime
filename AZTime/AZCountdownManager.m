@@ -192,7 +192,11 @@ static AZCountdownManager *_instance;
     AZCountdownModel *model = self.countdownModelDictM[key];
     if (model) {
         if (model.isAddObserver) {
-            [model removeObserver:self forKeyPath:@"leftTime" context:(__bridge void * _Nonnull)(key)];
+            @try {
+                [model removeObserver:self forKeyPath:@"leftTime"];
+            }
+            @catch (NSException *exception) {
+            }
         }
         model.addObserver = NO;
         if (clear) {

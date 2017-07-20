@@ -33,7 +33,7 @@
 
 - (NSArray *)fetchData {
     NSMutableArray *arrM = [NSMutableArray array];
-    for (NSInteger i = 0; i < 2; i++) {
+    for (NSInteger i = 0; i < 200; i++) {
         TimeModel *model = [[TimeModel alloc] init];
         model.index = i;
 
@@ -42,8 +42,8 @@
             //否则会导致未加载到tableView上的cell时间错误
             //在添加倒计时时 deadlineDate传nil
             model.type = TimeModelTypeDuration;
-//            model.duration = random() % 300;
-            model.duration = 600;
+            model.duration = random() % 60;
+//            model.duration = 600;
             NSDate *deadlineDate = [[AZCountdownManager sharedInstance] serverDeadlieDateWithDuration:model.duration];
             model.az_deadLineDate = deadlineDate;
         }else {

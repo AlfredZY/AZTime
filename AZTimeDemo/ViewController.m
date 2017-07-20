@@ -23,8 +23,8 @@
     [super viewDidLoad];
     [self.view addSubview:self.tableView];
     self.tableView.frame = self.view.bounds;
-    self.titles = @[@"CountDownDemo",@"ServerTimeDemo"];
-    self.classStrings = @[@"TimerTableViewController",@"ServerTimeViewController"];
+    self.titles = @[@"CountDownDemo",@"ServerTimeDemo",@"TimerNormalViewDemo"];
+    self.classStrings = @[@"TimerTableViewController",@"ServerTimeViewController",@"TimerNormalViewController"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
