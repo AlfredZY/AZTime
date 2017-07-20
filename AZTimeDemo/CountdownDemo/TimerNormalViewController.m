@@ -47,8 +47,9 @@
 
 - (void)updateTimer {
     __weak typeof(self) weakSelf = self;
+    NSDate *newDate = [NSDate dateWithTimeIntervalSinceNow:random() % 60];
     [[AZCountdownManager sharedInstance] updateCountdownWithView:self.countdownLabel
-                                                    deadlineDate:[NSDate dateWithTimeIntervalSinceNow:random() % 60]
+                                                    deadlineDate:newDate
                                                            model:self.model
                                                         interval:0.3
                                                         autoStop:YES

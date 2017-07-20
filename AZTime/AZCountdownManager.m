@@ -109,9 +109,8 @@ static AZCountdownManager *_instance;
     countdown.autoStop = autoStop;
     [self.countdownModelDictM setValue:countdown forKey:key];
     
-    if (countdown.isAddObserver == NO) {
+    if (![self isAddObserver:countdown keyPath:@"leftTime"]) {
         [countdown addObserver:self forKeyPath:@"leftTime" options:NSKeyValueObservingOptionNew context:(__bridge void * _Nonnull)(key)];
-        countdown.addObserver = YES;
     }
     countdown.leftTime = [countdown.model.az_deadLineDate timeIntervalSinceDate:self.serverDate];
     
@@ -191,14 +190,9 @@ static AZCountdownManager *_instance;
     }
     AZCountdownModel *model = self.countdownModelDictM[key];
     if (model) {
-        if (model.isAddObserver) {
-            @try {
-                [model removeObserver:self forKeyPath:@"leftTime"];
-            }
-            @catch (NSException *exception) {
-            }
+        if ([self isAddObserver:model keyPath:key]) {
+            [model removeObserver:self forKeyPath:@"leftTime"];
         }
-        model.addObserver = NO;
         if (clear) {
             model.model.az_deadLineDate = nil;
         }
@@ -207,6 +201,8 @@ static AZCountdownManager *_instance;
     
     [self checkShouldStop];
 }
+
+
 
 #pragma mark- KVO
 
@@ -246,6 +242,21 @@ static AZCountdownManager *_instance;
         [self ignoreCountdownWithKey:key];
     }
     countdownModel.delayCheck = NO;
+}
+
+// 判断是否已添加监听
+- (BOOL)isAddObserver:(NSObject *)obj keyPath:(NSString *)keyPath
+{
+    id info = obj.observationInfo;
+    NSArray *array = [info valueForKey:@"_observances"];
+    for (id objc in array) {
+        id Properties = [objc valueForKeyPath:@"_property"];
+        NSString *keyPath = [Properties valueForKeyPath:@"_keyPath"];
+        if ([keyPath isEqualToString:keyPath]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 #pragma mark- Action
