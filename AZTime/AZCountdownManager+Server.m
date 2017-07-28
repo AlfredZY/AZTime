@@ -23,7 +23,7 @@ static NSString *const kKVOContent = @"AZCountdownManager_AutoUpdate";
     });
 }
 
-void swizzleMethod(Class class, SEL originalSelector, SEL swizzledSelector)
+static void swizzleMethod(Class class, SEL originalSelector, SEL swizzledSelector)
 {
     Method originalMethod = class_getInstanceMethod(class, originalSelector);
     Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
