@@ -31,6 +31,9 @@
 @property (nonatomic, strong, readonly) NSDate *serverDate;
 
 
+/**
+ Singleton
+ */
 + (instancetype)sharedInstance;
 
 
@@ -42,15 +45,16 @@
  */
 - (NSDate *)serverDeadlieDateWithDuration:(NSTimeInterval)duration;
 
+
 /**
  新增倒计时
  
  @param view 对于cell这类会复用view的倒计时可以直接将cell或者倒计时的view作为key
  @param deadline 倒计时结束的时间
- @param model 对于cell这类会复用的传对应的model其他传nil
+ @param model 对于cell这类会复用的传对应的model其他传nil,传nil的倒计时，提前结束时需要自己手动调用stop方法来停止倒计时
  @param interval 倒计时间隔 最小0.1s default0.5s
  @param autoStop 倒计时到0时是否自动停止 NO会出现倒计时为负数的情况
- @param leftTimeChangedBlock 每间隔interval会调用一次block leftTime为剩余时间 model为传入的model
+ @param leftTimeChangedBlock 每间隔interval会调用一次block，leftTime为剩余时间 model为传入的model
  */
 - (void)addCountdownWithView:(UIView *)view
                 deadlineDate:(NSDate *)deadline
@@ -83,20 +87,15 @@
                       autoStop:(BOOL)autoStop
           leftTimeChangedBlock:(void (^)(NSTimeInterval leftTime, NSObject *model))leftTimeChangedBlock;
 
-
+/**
+ 更新倒计时设置
+ */
 - (void)updateCountdownWithView:(UIView *)view
                    deadlineDate:(NSDate *)deadline
                           model:(NSObject *)model
                        interval:(NSTimeInterval)interval
                        autoStop:(BOOL)autoStop
            leftTimeChangedBlock:(void (^)(NSTimeInterval leftTime, NSObject *model))leftTimeChangedBlock;
-
-/**
- 停止监听倒计时
- */
-- (void)ignoreCountdownWithKey:(NSString *)key;
-
-- (void)ignoreCountdownWithView:(UIView *)view;
 
 /**
  停止倒计时

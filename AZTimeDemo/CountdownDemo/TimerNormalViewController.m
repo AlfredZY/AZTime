@@ -31,32 +31,47 @@
 
 - (void)customLayout {
     [self.view addSubview:self.countdownLabel];
-    
     self.countdownLabel.frame = CGRectMake(0, 65, [UIScreen mainScreen].bounds.size.width, 44);
 }
 
 - (void)subscribe {
-    self.model = [NSObject new];
+//    self.model = [NSObject new];
     [self updateTimer];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self updateTimer];
-    });
-    
-   
+
+}
+
+- (void)dealloc {
+    NSLog(@"dealloc");
+    [[AZCountdownManager sharedInstance] stopCountdownWithKey:@"key"];
 }
 
 - (void)updateTimer {
     __weak typeof(self) weakSelf = self;
-    NSDate *newDate = [NSDate dateWithTimeIntervalSinceNow:random() % 60];
-    [[AZCountdownManager sharedInstance] updateCountdownWithView:self.countdownLabel
+    NSDate *newDate = [NSDate dateWithTimeIntervalSinceNow:rand()%60];
+    
+//    [[AZCountdownManager sharedInstance] updateCountdownWithView:self.countdownLabel
+//                                                    deadlineDate:newDate
+//                                                           model:self.model
+//                                                        interval:0.3
+//                                                        autoStop:YES
+//                                            leftTimeChangedBlock:^(NSTimeInterval leftTime, NSObject *model) {
+//                                                __strong typeof(self) strongSelf = weakSelf;
+//                                                strongSelf.countdownLabel.text = [NSString stringWithFormat:@"%0.0f",leftTime];
+//                                            }];
+    
+    [[AZCountdownManager sharedInstance] addCountdownWithKey:@"key"
                                                     deadlineDate:newDate
-                                                           model:self.model
+                                                           model:nil
                                                         interval:0.3
                                                         autoStop:YES
                                             leftTimeChangedBlock:^(NSTimeInterval leftTime, NSObject *model) {
                                                 __strong typeof(self) strongSelf = weakSelf;
                                                 strongSelf.countdownLabel.text = [NSString stringWithFormat:@"%0.0f",leftTime];
                                             }];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self updateTimer];
 }
 
 #pragma mark- Getter
@@ -69,5 +84,6 @@
     }
     return _countdownLabel;
 }
+
 
 @end

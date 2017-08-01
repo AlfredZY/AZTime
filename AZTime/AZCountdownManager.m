@@ -22,7 +22,7 @@ static const NSTimeInterval kDefaultInterval = 0.5;
 @property (strong, nonatomic, readwrite) NSMutableDictionary<NSString *, AZCountdownModel *> *countdownModelDictM;
 @property (weak, nonatomic) NSRunLoop *runloop;
 @property (nonatomic, strong, readwrite) NSDate *serverDate;
-
+@property (nonatomic, strong) NSMutableArray<NSString *> *shouldStopCountdownKeys;
 
 @end
 
@@ -112,7 +112,11 @@ static AZCountdownManager *_instance;
     if (![self isAddObserver:countdown keyPath:@"leftTime"]) {
         [countdown addObserver:self forKeyPath:@"leftTime" options:NSKeyValueObservingOptionNew context:(__bridge void * _Nonnull)(key)];
     }
-    countdown.leftTime = [countdown.model.az_deadLineDate timeIntervalSinceDate:self.serverDate];
+    if (model != nil) {
+        countdown.leftTime = [countdown.model.az_deadLineDate timeIntervalSinceDate:self.serverDate];
+    }else if(countdown.deadline != nil) {
+        countdown.leftTime = [countdown.deadline timeIntervalSinceDate:self.serverDate];
+    }
     
     [self runTimer];
 }
@@ -136,6 +140,10 @@ static AZCountdownManager *_instance;
     [self updateCountdownWithKey:AZViewKey(view) deadlineDate:deadline model:model interval:interval autoStop:autoStop leftTimeChangedBlock:leftTimeChangedBlock];
 }
 
+
+/**
+ 停止监听倒计时（倒计时仍在继续 但是leftTimeChangedBlock不会调用）
+ */
 - (void)ignoreCountdownWithKey:(NSString *)key {
     [self removeObserverWithKey:key clearDeadLineDate:NO];
 }
@@ -222,9 +230,7 @@ static AZCountdownManager *_instance;
                         if (!countdownModel.isDelayCheck) {
                             countdownModel.delayCheck = YES;
                             [self performSelector:@selector(checkShouldIgnoreCountdownWithKey:) withObject:key afterDelay:60];
-
                         }
-//                        [self ignoreCountdownWithKey:key];
                     }else{
                         countdownModel.leftTimeChangedBlock(leftTime, countdownModel.model);
                     }
@@ -277,6 +283,12 @@ static AZCountdownManager *_instance;
         index = 0;
         return;
     }
+    
+    for (NSString *key in self.shouldStopCountdownKeys) {
+        [self stopCountdownWithKey:key];
+    }
+    [self.shouldStopCountdownKeys removeAllObjects];
+    
     __weak typeof(self)weakSelf = self;
     [self.countdownModelDictM enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, AZCountdownModel * _Nonnull obj, BOOL * _Nonnull stop) {
         __strong typeof(self) strongSelf = weakSelf;
@@ -284,9 +296,11 @@ static AZCountdownManager *_instance;
             if (obj.model != nil) {
                 NSTimeInterval leftTime = [obj.model.az_deadLineDate timeIntervalSinceDate:self.serverDate];
                 obj.leftTime = leftTime;
-            }else{
+            }else if(obj.deadline != nil){
                 NSTimeInterval leftTime = [obj.deadline timeIntervalSinceDate:self.serverDate];
                 obj.leftTime = leftTime;
+            }else {
+                [weakSelf.shouldStopCountdownKeys addObject:key];
             }
         }
         
@@ -328,6 +342,13 @@ static AZCountdownManager *_instance;
         _countdownModelDictM = [NSMutableDictionary dictionary];
     }
     return _countdownModelDictM;
+}
+
+- (NSArray *)shouldStopCountdownKeysAtIndexes:(NSIndexSet *)indexes {
+    if (_shouldStopCountdownKeys == nil) {
+        _shouldStopCountdownKeys = [NSMutableArray array];
+    }
+    return _shouldStopCountdownKeys;
 }
 
 @end
