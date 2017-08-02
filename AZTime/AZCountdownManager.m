@@ -14,7 +14,7 @@
 
 static const NSTimeInterval kDefaultInterval = 0.5;
 
-#define AZViewKey(view) [NSString stringWithFormat:@"key:%p",view]
+#define AZViewKey(view) [NSString stringWithFormat:@"AZCountdownKey:%p",view]
 
 @interface AZCountdownManager ()
 
