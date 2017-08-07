@@ -22,7 +22,6 @@
 		BB87C06C1F0C80FC00A83273 /* AZCountdownModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BB87C0631F0C80FC00A83273 /* AZCountdownModel.m */; };
 		BB87C06D1F0C80FC00A83273 /* AZServerTimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB87C0651F0C80FC00A83273 /* AZServerTimeManager.m */; };
 		BB87C06E1F0C80FC00A83273 /* NSDate+InternetDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = BB87C0681F0C80FC00A83273 /* NSDate+InternetDateTime.m */; };
-		BB87C06F1F0C80FC00A83273 /* NSObject+AZCountdownExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BB87C06A1F0C80FC00A83273 /* NSObject+AZCountdownExtension.m */; };
 		BB87C0721F0C98C500A83273 /* AZCountdownManager+Server.m in Sources */ = {isa = PBXBuildFile; fileRef = BB87C0711F0C98C500A83273 /* AZCountdownManager+Server.m */; };
 		BBB245871F20537F00C2F311 /* TimerNormalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB245861F20537F00C2F311 /* TimerNormalViewController.m */; };
 /* End PBXBuildFile section */
@@ -56,8 +55,6 @@
 		BB87C0661F0C80FC00A83273 /* AZTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZTime.h; sourceTree = "<group>"; };
 		BB87C0671F0C80FC00A83273 /* NSDate+InternetDateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+InternetDateTime.h"; sourceTree = "<group>"; };
 		BB87C0681F0C80FC00A83273 /* NSDate+InternetDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+InternetDateTime.m"; sourceTree = "<group>"; };
-		BB87C0691F0C80FC00A83273 /* NSObject+AZCountdownExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AZCountdownExtension.h"; sourceTree = "<group>"; };
-		BB87C06A1F0C80FC00A83273 /* NSObject+AZCountdownExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AZCountdownExtension.m"; sourceTree = "<group>"; };
 		BB87C0701F0C98C500A83273 /* AZCountdownManager+Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AZCountdownManager+Server.h"; sourceTree = "<group>"; };
 		BB87C0711F0C98C500A83273 /* AZCountdownManager+Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AZCountdownManager+Server.m"; sourceTree = "<group>"; };
 		BBB245851F20537F00C2F311 /* TimerNormalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerNormalViewController.h; sourceTree = "<group>"; };
@@ -157,8 +154,6 @@
 				BB87C0651F0C80FC00A83273 /* AZServerTimeManager.m */,
 				BB87C0671F0C80FC00A83273 /* NSDate+InternetDateTime.h */,
 				BB87C0681F0C80FC00A83273 /* NSDate+InternetDateTime.m */,
-				BB87C0691F0C80FC00A83273 /* NSObject+AZCountdownExtension.h */,
-				BB87C06A1F0C80FC00A83273 /* NSObject+AZCountdownExtension.m */,
 			);
 			path = AZTime;
 			sourceTree = SOURCE_ROOT;
@@ -240,7 +235,6 @@
 				BBB245871F20537F00C2F311 /* TimerNormalViewController.m in Sources */,
 				BB87C06D1F0C80FC00A83273 /* AZServerTimeManager.m in Sources */,
 				BB145E371F0B80F3005A04A6 /* TimeModel.m in Sources */,
-				BB87C06F1F0C80FC00A83273 /* NSObject+AZCountdownExtension.m in Sources */,
 				BB145E401F0B8D4C005A04A6 /* ServerTimeViewController.m in Sources */,
 				BB145E0F1F0B77DC005A04A6 /* ViewController.m in Sources */,
 				BB145E0C1F0B77DC005A04A6 /* AppDelegate.m in Sources */,

@@ -8,7 +8,6 @@
 
 #import "TimerTableViewController.h"
 #import "TimerCell.h"
-#import "NSObject+AZCountDownExtension.h"
 #import "AZTime.h"
 
 @interface TimerTableViewController ()
@@ -36,24 +35,8 @@
     for (NSInteger i = 0; i < 200; i++) {
         TimeModel *model = [[TimeModel alloc] init];
         model.index = i;
-
-        if (i % 2 == 0) {
-            //对于服务器传回来的是duration的需要在model获取时就设置deadlineDate
-            //否则会导致未加载到tableView上的cell时间错误
-            //在添加倒计时时 deadlineDate传nil
-            model.type = TimeModelTypeDuration;
-            model.duration = random() % 60;
-//            model.duration = 600;
-            NSDate *deadlineDate = [[AZCountdownManager sharedInstance] serverDeadlieDateWithDuration:model.duration];
-            model.az_deadLineDate = deadlineDate;
-        }else {
-            //如果服务器返回的就是date
-            //在添加倒计时时 deadlineDate传date
-            model.type = TimeModelTypeDeadlineDate;
-//            model.date = [NSDate dateWithTimeIntervalSinceNow:random() % 300];
-            model.date = [NSDate dateWithTimeIntervalSinceNow:1200];
-        }
-        
+//        model.date = [NSDate dateWithTimeIntervalSinceNow:random() % 300];
+        model.date = [NSDate dateWithTimeIntervalSinceNow:300];
         [arrM addObject:model];
     }
     return [arrM copy];

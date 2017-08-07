@@ -29,7 +29,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    NSLog(@"%lu",(unsigned long)[AZCountdownManager sharedInstance].keys.count);
+    NSLog(@"CurrentCountdownTimerCount:%lu",[AZCountdownManager sharedInstance].keys.count);
 }
 
 

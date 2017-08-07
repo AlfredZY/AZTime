@@ -75,7 +75,7 @@ static AZServerTimeManager *_instance;
         NSDate *responseDate = [NSDate dateFromRFC822String:httpResponse.allHeaderFields[@"Date"]];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (responseDate != nil ) {
-                strongSelf.offset = -([self timeIntervalSince1970:responseDate] - [self timeIntervalSince1970:requestDate] - ([self timeIntervalSince1970:now] - [self timeIntervalSince1970:requestDate]) / 2.f);
+                strongSelf.offset = -([responseDate timeIntervalSince1970] - [requestDate timeIntervalSince1970] - ([now timeIntervalSince1970] - [requestDate timeIntervalSince1970]) / 2.f);
                 if (completion) {
                     completion(YES,strongSelf.offset);
                 }
@@ -106,11 +106,6 @@ static AZServerTimeManager *_instance;
             });
         }
     }];
-}
-
-//返回s级别的时间
-- (long long)timeIntervalSince1970:(NSDate *)date {
-    return (long long)[date timeIntervalSince1970];
 }
 
 @end

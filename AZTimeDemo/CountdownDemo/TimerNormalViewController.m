@@ -49,25 +49,15 @@
     __weak typeof(self) weakSelf = self;
     NSDate *newDate = [NSDate dateWithTimeIntervalSinceNow:rand()%60];
     
-//    [[AZCountdownManager sharedInstance] updateCountdownWithView:self.countdownLabel
-//                                                    deadlineDate:newDate
-//                                                           model:self.model
-//                                                        interval:0.3
-//                                                        autoStop:YES
-//                                            leftTimeChangedBlock:^(NSTimeInterval leftTime, NSObject *model) {
-//                                                __strong typeof(self) strongSelf = weakSelf;
-//                                                strongSelf.countdownLabel.text = [NSString stringWithFormat:@"%0.0f",leftTime];
-//                                            }];
-    
     [[AZCountdownManager sharedInstance] addCountdownWithKey:@"key"
-                                                    deadlineDate:newDate
-                                                           model:nil
-                                                        interval:0.3
-                                                        autoStop:YES
-                                            leftTimeChangedBlock:^(NSTimeInterval leftTime, NSObject *model) {
-                                                __strong typeof(self) strongSelf = weakSelf;
-                                                strongSelf.countdownLabel.text = [NSString stringWithFormat:@"%0.0f",leftTime];
-                                            }];
+                                                deadlineDate:newDate
+                                                    interval:0.3
+                                                    autoStop:YES
+                                        leftTimeChangedBlock:^(NSTimeInterval leftTime, UIView *view, NSString *key) {
+                                            __strong typeof(self) strongSelf = weakSelf;
+                                            strongSelf.countdownLabel.text = [NSString stringWithFormat:@"%0.0f",leftTime];
+    }];
+    
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
