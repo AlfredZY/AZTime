@@ -21,6 +21,8 @@ typedef void(^AZLeftTimeChangedBlock)(NSTimeInterval leftTime, UIView * _Nullabl
 
 /**
  本地时间和服务器时间的偏差量 default 0
+ 
+ ex: 服务器时间 2017-08-15 12:00:00 , 本地时间 2017-08-15 12:00:10 则 serverOffset = 10
  */
 @property (nonatomic, assign) NSTimeInterval serverOffset;
 
