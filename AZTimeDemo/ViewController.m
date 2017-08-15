@@ -25,11 +25,16 @@
     self.tableView.frame = self.view.bounds;
     self.titles = @[@"CountDownDemo",@"ServerTimeDemo",@"TimerNormalViewDemo"];
     self.classStrings = @[@"TimerTableViewController",@"ServerTimeViewController",@"TimerNormalViewController"];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     NSLog(@"CurrentCountdownTimerCount:%lu",[AZCountdownManager sharedInstance].keys.count);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSLog(@"CurrentCountdownTimerCount:%lu",[AZCountdownManager sharedInstance].keys.count);
+        NSLog(@"=====================================");
+    });
 }
 
 

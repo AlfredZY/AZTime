@@ -36,14 +36,9 @@ static NSString *const kID = @"TimerCellID";
     return self;
 }
 
-- (void)dealloc {
-    NSLog(@"delloc:%s",__func__);
-}
-
 - (void)setModel:(TimeModel *)model {
     _model = model;
     __weak typeof(self) weakSelf = self;
-    
     [[AZCountdownManager sharedInstance] addCountdownWithView:self
                                                  deadlineDate:model.date
                                                      interval:0.3

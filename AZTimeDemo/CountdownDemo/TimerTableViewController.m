@@ -20,10 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [self reload];
 }
-
 
 - (void)reload {
     self.data = [self fetchData];
@@ -35,13 +33,11 @@
     for (NSInteger i = 0; i < 200; i++) {
         TimeModel *model = [[TimeModel alloc] init];
         model.index = i;
-//        model.date = [NSDate dateWithTimeIntervalSinceNow:random() % 300];
-        model.date = [NSDate dateWithTimeIntervalSinceNow:300];
+        model.date = [NSDate dateWithTimeIntervalSinceNow:random() % 60];
         [arrM addObject:model];
     }
     return [arrM copy];
 }
-
 
 #pragma mark - Table view data source
 
@@ -60,11 +56,10 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44)];
     [btn addTarget:self action:@selector(reload) forControlEvents:UIControlEventTouchUpInside];
-    [btn setTitle:@"ReloadDate" forState:UIControlStateNormal];
+    [btn setTitle:@"ReloadData" forState:UIControlStateNormal];
     btn.backgroundColor = [UIColor orangeColor];
     return btn;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [TimerCell cellWithTableView:tableView model:self.data[indexPath.row]];

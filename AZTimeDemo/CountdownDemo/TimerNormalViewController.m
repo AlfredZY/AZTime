@@ -41,7 +41,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@"dealloc");
+    NSLog(@"dealloc:%s",__func__);
     [[AZCountdownManager sharedInstance] stopCountdownWithKey:@"key"];
 }
 

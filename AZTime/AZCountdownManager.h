@@ -54,8 +54,10 @@ typedef void(^AZLeftTimeChangedBlock)(NSTimeInterval leftTime, UIView * _Nullabl
         leftTimeChangedBlock:(AZLeftTimeChangedBlock _Nullable )leftTimeChangedBlock;
 
 /**
- 添加一个自定义key的倒计时，当autoStop == YES 时，倒计时到 0 后会自动停止，否则需要手动停止
-
+ 添加一个自定义key的倒计时
+ 
+ 当autoStop = YES 时，倒计时到 0 后会自动停止
+ 当autoStop = NO 需要手动停止 ，否则倒计时会一直运行
  */
 - (void)addCountdownWithKey:(NSString *_Nonnull)key
                 deadlineDate:(NSDate *_Nonnull)deadline

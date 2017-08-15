@@ -13,6 +13,7 @@
 static const NSTimeInterval kDefaultInterval = 0.5;
 static NSString *const kKeyPath = @"leftTime";
 
+
 #define AZViewKey(view) [NSString stringWithFormat:@"AZCountdownKey:%p",view]
 
 @interface AZCountdownManager ()
@@ -21,7 +22,6 @@ static NSString *const kKeyPath = @"leftTime";
 @property (strong, nonatomic, readwrite) NSMutableDictionary<NSString *, AZCountdownModel *> *countdownModelDictM;
 @property (weak, nonatomic) NSRunLoop *runloop;
 @property (nonatomic, strong, readwrite) NSDate *serverDate;
-@property (nonatomic, strong) NSMutableArray<NSString *> *shouldStopCountdownKeys;
 
 @end
 
@@ -92,7 +92,6 @@ static AZCountdownManager *_instance;
     return AZViewKey(view);
 }
 
-
 - (void)addCountdownWithView:(UIView *)view
                 deadlineDate:(NSDate *)deadline
                     interval:(NSTimeInterval)interval
@@ -140,8 +139,9 @@ static AZCountdownManager *_instance;
     countdown.interval = interval > 0 ? interval : kDefaultInterval;
     countdown.leftTimeChangedBlock = leftTimeChangedBlock;
     countdown.autoStop = autoStop;
-    [self.countdownModelDictM setValue:countdown forKey:countdownKey];
     
+    [self.countdownModelDictM setValue:countdown forKey:countdownKey];
+
     if ([self isAddObserver:countdown keyPath:kKeyPath]) {
         [countdown removeObserver:self forKeyPath:kKeyPath];
     }
@@ -275,37 +275,33 @@ static AZCountdownManager *_instance;
 - (void)handleLeftTimeWithFinishedFlag:(BOOL * _Nonnull)finish {
     static NSUInteger index = 0;
     *finish = NO;
-   
-    for (NSString *key in self.shouldStopCountdownKeys) {
-        [self stopCountdownWithKey:key];
-    }
-    [self.shouldStopCountdownKeys removeAllObjects];
-   
-    if (self.countdownModelDictM.count <= 0) {
+    NSInteger count = self.countdownModelDictM.count;
+    
+    if (count <= 0) {
         *finish = YES;
         index = 0;
         return;
     }
     __weak typeof(self)weakSelf = self;
-    [self.countdownModelDictM enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, AZCountdownModel * _Nonnull obj, BOOL * _Nonnull stop) {
+    [self.countdownModelDictM enumerateKeysAndObjectsWithOptions:NSEnumerationReverse usingBlock:^(NSString * _Nonnull key, AZCountdownModel * _Nonnull obj, BOOL * _Nonnull stop) {
         __strong typeof(self) strongSelf = weakSelf;
         if ([strongSelf shouldUpdateLeftTimeWithModel:obj]) {
-           if(!obj.isCanAutoRelease || (obj.isCanAutoRelease && obj.view != nil)){
+            if(!obj.isCanAutoRelease || (obj.isCanAutoRelease && obj.view != nil)){
                 NSTimeInterval leftTime = [obj.deadline timeIntervalSinceDate:self.serverDate];
                 obj.leftTime = leftTime;
             }else {
-                [weakSelf.shouldStopCountdownKeys addObject:key];
+                [weakSelf stopCountdownWithKey:key];
             }
         }
         
         index++;
-        if (index >= strongSelf.countdownModelDictM.count) {
+        if (index >= count) {
             *finish = YES;
             index = 0;
         }
     }];
+ 
 }
-
 
 #pragma mark- Getter
 
@@ -324,7 +320,6 @@ static AZCountdownManager *_instance;
                                                selector:@selector(timerAction)
                                                userInfo:nil
                                                 repeats:YES];
-        
         [self.runloop addTimer:timer forMode:NSDefaultRunLoopMode];
         _timer = timer;
     }
@@ -336,14 +331,6 @@ static AZCountdownManager *_instance;
         _countdownModelDictM = [NSMutableDictionary dictionary];
     }
     return _countdownModelDictM;
-}
-
-
-- (NSMutableArray<NSString *> *)shouldStopCountdownKeys {
-    if (_shouldStopCountdownKeys == nil) {
-        _shouldStopCountdownKeys = [NSMutableArray array];
-    }
-    return _shouldStopCountdownKeys;
 }
 
 @end

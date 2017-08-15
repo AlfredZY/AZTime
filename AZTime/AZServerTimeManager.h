@@ -14,6 +14,7 @@ typedef void(^AZServerTimeManagerBlock)(BOOL success,NSTimeInterval offset);
 
 /**
  本地时间和服务器时间的偏差量(>0表示比服务器时间快)
+ ex: 服务器时间 2017-08-15 12:00:00 , 本地时间 2017-08-15 12:00:10 则 offset = 10
  */
 @property (assign, nonatomic, readonly) NSTimeInterval offset;
 
