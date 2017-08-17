@@ -68,7 +68,7 @@ typedef void(^AZLeftTimeChangedBlock)(NSTimeInterval leftTime, UIView * _Nullabl
         leftTimeChangedBlock:(AZLeftTimeChangedBlock _Nullable )leftTimeChangedBlock;
 
 /**
- 添加一个自定义key且倒计时生命周期和view一样的倒计时
+ 添加一个自定义key且倒计时生命周期和view一样的倒计时 (key和view不能同时为nil)
 
  @param key 自定义倒计时key
  @param view 倒计时绑定的view

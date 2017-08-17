@@ -66,9 +66,12 @@ static AZServerTimeManager *_instance;
     
     NSURLSession *session = [NSURLSession sharedSession];
     NSURL *url = [NSURL URLWithString:self.verifyUrl];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"HEAD"];
     NSDate *requestDate = [NSDate date];
+    
     __weak typeof(self) weakSelf = self;
-    NSURLSessionTask *task = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    NSURLSessionTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         __strong typeof(self) strongSelf = weakSelf;
         NSDate *now = [NSDate date];
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
@@ -86,8 +89,9 @@ static AZServerTimeManager *_instance;
                 }
             }
         });
-        
+
     }];
+    
     [task resume];
 }
 
