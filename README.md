@@ -1,5 +1,9 @@
-# AZTime
+# [AZTime](https://github.com/AlfredZY/AZTime)
+
 ### 全局倒计时管理 + 计算本地时间与服务器时间差
+
+- 直接复制`AZTime`文件夹到项目或者使用cocoapods
+`pod 'AZTime', '~> 0.1.0'`
 
 - `AZTime`主要提供了一个用于防止本地时间与服务器时间有偏差以及用户手动修改系统时间导致倒计时不准确的解决方案。
 
@@ -37,48 +41,7 @@
 ```
 
 
-#### 主要API
 
-
-```objc
-#pragma mark - AZCountdownManager
-
-/**
- 添加一个自定义key且倒计时生命周期和view一样的倒计时
-
- @param key 自定义倒计时key
- @param view 倒计时绑定的view
- @param deadline 倒计时终点时间
- @param interval 倒计时刷新间隔
- @param autoStop 倒计时到0后是否自动停止倒计时
- @param leftTimeChangedBlock 倒计时刷新回调block
- */
-- (void)addCountdownWithKey:(NSString *_Nullable)key
-                       view:(UIView *_Nullable)view
-               deadlineDate:(NSDate *_Nonnull)deadline
-                   interval:(NSTimeInterval)interval
-                   autoStop:(BOOL)autoStop
-       leftTimeChangedBlock:(AZLeftTimeChangedBlock _Nullable )leftTimeChangedBlock;
-
-#pragma mark - AZServerTimeManager
-
-/**
- 更新与服务器时间的差值 需要先设置verifyUrl 更新完成后offset为最新的偏移量
-
- @param completion 是否更新完成、偏移量
- */
-- (void)updateServerTimeOffset:(AZServerTimeManagerBlock)completion;
-
-#pragma mark -  AZCountdownManager (Server)
-
-/**
- 自动更新本地和服务器时间的偏移量和AZCountdownManager的serverOffset
- 
- @param verifyUrl 校对的URL
- */
-- (void)autoUpdateServerOffsetWithVerifyUrl:(NSString *)verifyUrl;
-
-```
 
 
 
